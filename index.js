@@ -4,7 +4,7 @@ const app = express()
 const jwt = require('jsonwebtoken')
 const SECRET = 'teste'
 
-let port = 3000
+let port = process.env.PORT || 3000
 
 const User = require('./models/User')
 
@@ -112,7 +112,7 @@ app.get('/', (req, res) => {
 mongoose.connect(`mongodb+srv://jukita:jucajuca123@apicluster.zzahs.mongodb.net/cadastro?retryWrites=true&w=majority`)
     .then(() => {
         console.log('Conectado ao MongoDB!')
-        app.listen(process.env.port || port, () => {
+        app.listen(port, () => {
             console.log("Servidor rodando")
         })
     })
