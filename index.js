@@ -106,7 +106,8 @@ app.post('/cadastro', async (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    res.status(200).json({ message: "Tudo ok!" })
+    // res.status(200).json({ message: "Tudo ok!" })
+    res.send("Teste")
 })
 
 mongoose.connect(`mongodb+srv://jukita:jucajuca123@apicluster.zzahs.mongodb.net/cadastro?retryWrites=true&w=majority`)
