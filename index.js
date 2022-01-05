@@ -23,9 +23,9 @@ app.post('/logout', (req, res) => {
 // CONSULTADO NO DB (consultando todos os usuarios cadastrados)
 app.get('/consulta', (req, res) => {
     User.find({}, (err, docs) => {
-        if(!err){
+        if (!err) {
             res.status(200).json(docs)
-        }else{
+        } else {
             throw err
         }
     })
@@ -50,10 +50,10 @@ app.post('/login', async (req, res) => {
         if (await User.findOne({ senha })) {
             let userId
             // dentro do model user vai buscar no banco de dados um usuario com login e senha igual a login e senha
-            User.find({login: login, senha: senha}, (err, docs) => { //vai salvar os erros em err, e os dados do usuario em docs
-                if(!err){
+            User.find({ login: login, senha: senha }, (err, docs) => { //vai salvar os erros em err, e os dados do usuario em docs
+                if (!err) {
                     userId = docs[0]._id // vai salvar na variavel userId, o primeiro elemento de docs(e o unico), com o valor de _id (ou seja o id do usuario no bd)
-                }else{
+                } else {
                     return res.status(422).json({ error: err })
                 }
             })
@@ -113,10 +113,11 @@ app.get('/', (req, res) => {
 mongoose.connect(`mongodb+srv://jukita:jucajuca123@apicluster.zzahs.mongodb.net/cadastro?retryWrites=true&w=majority`)
     .then(() => {
         console.log('Conectado ao MongoDB!')
-        app.listen(port, () => {
-            console.log("Servidor rodando")
-        })
+
     })
     .catch((err) => {
         console.log("ERRO AO CONECTAR AO MONGO DB: " + err)
     })
+app.listen(port, () => {
+    console.log("Servidor rodando")
+})
