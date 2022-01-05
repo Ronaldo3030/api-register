@@ -113,11 +113,10 @@ app.get('/', (req, res) => {
 mongoose.connect(`mongodb+srv://jukita:jucajuca123@apicluster.zzahs.mongodb.net/cadastro?retryWrites=true&w=majority`)
     .then(() => {
         console.log('Conectado ao MongoDB!')
-
+        app.listen(port, () => {
+            console.log("Servidor rodando")
+        })
     })
     .catch((err) => {
         console.log("ERRO AO CONECTAR AO MONGO DB: " + err)
     })
-app.listen(port, () => {
-    console.log("Servidor rodando")
-})
